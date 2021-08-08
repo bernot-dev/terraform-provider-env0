@@ -6,8 +6,9 @@ resource "env0_template" "tested1" {
   name                                    = "tested1"
   description                             = "Tested 1 description"
   type                                    = "terraform"
-  repository                              = "https://github.com/env0/templates"
-  github_installation_id                  = 11551359
+  repository                              = "https://gitlab.com/eranelbaz/templates.git"
+  token_id                                = "3ff4f450-92e5-4248-9b0c-5d80cc074ce5"
+  gitlab_project_id                       = 23794406
   path                                    = var.second_run ? "second" : "misc/null-resource"
   retries_on_deploy                       = 3
   retry_on_deploy_only_when_matches_regex = "abc"
