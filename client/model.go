@@ -1,5 +1,7 @@
 package client
 
+import "errors"
+
 type Organization struct {
 	Id           string `json:"id"`
 	Name         string `json:"name"`
@@ -237,4 +239,16 @@ type TeamProjectAssignment struct {
 	TeamId      string `json:"teamId"`
 	ProjectId   string `json:"projectId"`
 	ProjectRole Role   `json:"projectRole"`
+}
+
+func IsValidRole(role Role) error {
+	if role == "" ||
+		role != Admin &&
+			role != Deployer &&
+			role != Viewer &&
+			role != Planner {
+		return errors.New("must specify valid project_role")
+	}
+
+	return nil
 }

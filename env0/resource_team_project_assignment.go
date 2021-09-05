@@ -34,11 +34,8 @@ func resourceTeamProjectAssignment() *schema.Resource {
 				Required:    true,
 				ValidateFunc: func(val interface{}, key string) (warns []string, errs []error) {
 					role := Role(val.(string))
-					if role == "" ||
-						role != Admin &&
-							role != Deployer &&
-							role != Viewer &&
-							role != Planner {
+					err := IsValidRole(role)
+					if err != nil {
 						errs = append(errs, fmt.Errorf("%v must be one of [Admin, Deployer, Viewer, Planner], got: %v", key, role))
 					}
 					return
